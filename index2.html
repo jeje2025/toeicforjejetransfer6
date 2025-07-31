@@ -1,0 +1,1891 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>TOEIC 850+ 완벽 공략 가이드 | 제제편입</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.5;
+            font-size: 14px;
+            -webkit-text-size-adjust: 100%; /* iOS 텍스트 크기 자동 조정 방지 */
+            -ms-text-size-adjust: 100%;
+        }
+        
+        /* 색상 변수 */
+        :root {
+            --primary-green: #20c997;
+            --dark-green: #0ca678;
+            --light-green: #63e6be;
+            --mint: #e6fcf5;
+            --dark-gray: #495057;
+            --warm-gray: #6c757d;
+            --coral: #dc6c5f;
+            --orange: #ff8c42;
+        }
+        
+        /* 헤더 스타일 */
+        header {
+            background: linear-gradient(135deg, #20c997 0%, #0ca678 100%);
+            color: white;
+            padding: 0.8rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(32, 201, 151, 0.2);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        /* 탭 네비게이션 스타일 */
+        .tab-navigation {
+            background: white;
+            position: fixed;
+            top: 50px;
+            left: 0;
+            right: 0;
+            z-index: 998;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+        
+        /* Chrome, Safari 스크롤바 숨기기 */
+        .tab-navigation::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .tab-list {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            min-width: fit-content;
+        }
+        
+        .tab-item {
+            flex: 0 0 auto;
+            list-style: none;
+        }
+        
+        /* 탭 링크 호버 애니메이션 */
+        .tab-link {
+            display: block;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+            white-space: nowrap;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation; /* 더블탭 줌 방지 */
+        }
+        
+        .tab-link:hover {
+            color: #20c997;
+            background: #e6fcf5;
+            transform: translateY(-2px);
+        }
+        
+        .tab-link.active {
+            color: #20c997;
+            background: #e6fcf5;
+        }
+        
+        .tab-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #20c997;
+        }
+        
+        /* LC 탭 스타일 */
+        .tab-link.lc-tab:hover {
+            color: #0ca678;
+            background: #e6fcf5;
+            transform: translateY(-2px);
+        }
+        
+        .tab-link.lc-tab.active {
+            color: #0ca678;
+            background: #e6fcf5;
+        }
+        
+        .tab-link.lc-tab.active::after {
+            background: #0ca678;
+        }
+        
+        /* 진행률 표시기 */
+        .progress-indicator {
+            position: fixed;
+            top: 100px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #e0e0e0;
+            z-index: 997;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #20c997, #0ca678);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        /* 메인 컨텐츠 */
+        main {
+            margin-top: 100px;
+            padding: 1.5rem 1rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* 섹션 숨기기/보이기 */
+        .content-section {
+            display: none;
+        }
+        
+        /* 페이드인 애니메이션 */
+        @keyframes fadeIn {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .content-section.active {
+            display: block !important;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        /* 인트로 섹션 */
+        .intro {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .intro:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .intro h2 {
+            color: #0ca678;
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        /* 인트로 메시지 애니메이션 */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .intro-message {
+            background: linear-gradient(135deg, #20c997 0%, #0ca678 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 10px rgba(32, 201, 151, 0.3);
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        /* LC 스타일 */
+        .lc-intro-message {
+            background: linear-gradient(135deg, #0ca678 0%, #087f5b 100%);
+            box-shadow: 0 3px 10px rgba(12, 166, 120, 0.3);
+        }
+        
+        .lc-intro h2 {
+            color: #087f5b;
+        }
+        
+        /* Part 구분 섹션 */
+        /* Part 구분 섹션 애니메이션 */
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .part-section {
+            background: linear-gradient(135deg, #dc6c5f 0%, #c95e52 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            margin: 2rem 0 1rem 0;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            animation: slideIn 0.6s ease-out;
+        }
+        
+        .part-section.lc-section {
+            background: linear-gradient(135deg, #0ca678 0%, #087f5b 100%);
+        }
+        
+        .part-section.vocab-section {
+            background: linear-gradient(135deg, #ff8c42 0%, #f07531 100%);
+        }
+        
+        /* 문법 포인트 카드 */
+        .grammar-point {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent; /* 모바일 탭 하이라이트 제거 */
+        }
+        
+        .grammar-point:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+        
+        /* 순위 배지 */
+        /* 순위 배지 애니메이션 */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .rank {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .rank-1 { color: #FFD700; }
+        .rank-2 { color: #C0C0C0; }
+        .rank-3 { color: #CD7F32; }
+        .rank-4, .rank-5 { color: #dc6c5f; }
+        
+        /* 전략 박스 */
+        .strategy-box {
+            background: #fff5f5;
+            border-left: 3px solid #dc6c5f;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 6px 6px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .strategy-box:hover {
+            transform: translateX(3px);
+            box-shadow: 3px 3px 10px rgba(220,108,95,0.15);
+        }
+        
+        .strategy-box h4 {
+            color: #dc6c5f;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.95rem;
+        }
+        
+        .strategy-box p {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* LC 전략 박스 */
+        .lc-strategy-box {
+            background: #e6fcf5;
+            border-left-color: #0ca678;
+            transition: all 0.3s ease;
+        }
+        
+        .lc-strategy-box:hover {
+            transform: translateX(3px);
+            box-shadow: 3px 3px 10px rgba(12,166,120,0.15);
+        }
+        
+        .lc-strategy-box h4 {
+            color: #0ca678;
+        }
+        
+        /* 예문 박스 */
+        .example-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .example-box:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(255,234,167,0.4);
+        }
+        
+        .example-box h5 {
+            color: #856404;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .example-text {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #2d3436;
+            margin: 0.8rem 0;
+            padding: 0.8rem;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #dfe6e9;
+            line-height: 1.4;
+        }
+        
+        /* 선택지 스타일 */
+        .options {
+            font-size: 0.85rem;
+            margin: 0.5rem 0;
+            padding-left: 1rem;
+            line-height: 1.8;
+        }
+        
+        /* 분석 섹션 */
+        .analysis {
+            background: #e8f5e9;
+            border-radius: 6px;
+            padding: 0.8rem;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+        }
+        
+        .analysis strong {
+            color: #2e7d32;
+        }
+        
+        /* 리스트 스타일 */
+        ul {
+            list-style: none;
+            margin: 0.8rem 0;
+        }
+        
+        ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+        
+        ul li:before {
+            content: "•";
+            color: #dc6c5f;
+            font-weight: bold;
+            position: absolute;
+            left: 0.4rem;
+        }
+        
+        .lc-section ul li:before {
+            color: #0ca678;
+        }
+        
+        /* 하이라이트 */
+        .highlight {
+            background: #fff3cd;
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        code {
+            background: #f1f3f5;
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #e83e8c;
+            font-size: 0.85rem;
+        }
+        
+        /* Part 7 특별 스타일 */
+        .document-type-section {
+            background: #fff5e8;
+            border-radius: 10px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .document-type-section h3 {
+            color: #d9480f;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .document-type {
+            background: white;
+            border-left: 3px solid #ff8c42;
+            padding: 0.8rem;
+            margin: 0.8rem 0;
+            border-radius: 0 6px 6px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .document-type:hover {
+            transform: translateX(3px);
+            box-shadow: 3px 3px 10px rgba(255,140,66,0.15);
+        }
+        
+        .document-type h4 {
+            color: #f76707;
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        /* 어휘 섹션 스타일 */
+        .vocab-category {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .vocab-category:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .vocab-category h3 {
+            color: #dc6c5f;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .vocab-item {
+            background: #fff5f5;
+            border-left: 3px solid #dc6c5f;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            border-radius: 0 6px 6px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .vocab-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 4px 15px rgba(220,108,95,0.2);
+        }
+        
+        .vocab-word {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #c13922;
+            margin-bottom: 0.3rem;
+        }
+        
+        .vocab-meaning {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .vocab-example {
+            font-size: 0.85rem;
+            color: #333;
+            font-style: italic;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+        
+        .vocab-example code {
+            background: #ffeae8;
+            color: #a82811;
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
+            font-style: normal;
+        }
+        
+        .paraphrase-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 0.8rem 0;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+        
+        .paraphrase-arrow {
+            color: #dc6c5f;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* LC Part 1 스타일 */
+        .lc-tip-box {
+            background: #e6fcf5;
+            border: 1px solid #0ca678;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .lc-tip-box:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(12,166,120,0.2);
+        }
+        
+        .lc-tip-box h4 {
+            color: #0ca678;
+            margin-bottom: 0.5rem;
+        }
+        
+        .photo-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .photo-type-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .photo-type-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .photo-type-card h4 {
+            color: #0ca678;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+            
+            /* 호버 효과 제거 (터치 디바이스) */
+            .grammar-point:hover,
+            .intro:hover,
+            .vocab-item:hover,
+            .photo-type-card:hover,
+            .strategy-box:hover,
+            .lc-strategy-box:hover,
+            .example-box:hover,
+            .document-type:hover,
+            .lc-tip-box:hover,
+            .vocab-category:hover {
+                transform: none;
+                box-shadow: none;
+            }
+            
+            /* 모바일에서 애니메이션 조정 */
+            @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-3px); }
+            }
+            
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.02); }
+                100% { transform: scale(1); }
+            }
+            
+            /* 탭 호버 효과 제거 */
+            .tab-link:hover {
+                transform: none;
+            }
+            
+            .tab-link.lc-tab:hover {
+                transform: none;
+            }
+            
+            /* 헤더 모바일 최적화 */
+            header {
+                padding: 0.5rem;
+            }
+            
+            h1 {
+                font-size: 1.1rem;
+            }
+            
+            /* 탭 네비게이션 모바일 최적화 */
+            .tab-navigation {
+                top: 40px;
+            }
+            
+            .tab-list {
+                justify-content: flex-start;
+                padding: 0;
+                gap: 0;
+            }
+            
+            .tab-link {
+                padding: 0.8rem 0.8rem;
+                font-size: 0.85rem;
+            }
+            
+            /* 진행률 표시기 위치 조정 */
+            .progress-indicator {
+                top: 84px;
+            }
+            
+            /* 메인 컨텐츠 여백 조정 */
+            main {
+                margin-top: 90px;
+                padding: 1rem 0.8rem;
+            }
+            
+            /* 인트로 섹션 모바일 최적화 */
+            .intro {
+                padding: 1.2rem;
+            }
+            
+            .intro h2 {
+                font-size: 1.3rem;
+                line-height: 1.4;
+            }
+            
+            .intro-message {
+                font-size: 0.95rem;
+                padding: 0.8rem 1rem;
+            }
+            
+            /* Part 구분 섹션 */
+            .part-section {
+                font-size: 1.1rem;
+                padding: 0.8rem 1rem;
+                margin: 1.5rem 0 1rem 0;
+            }
+            
+            /* 문법 포인트 카드 */
+            .grammar-point {
+                padding: 1.2rem;
+                margin-bottom: 1rem;
+            }
+            
+            /* 순위 배지 */
+            .rank {
+                font-size: 1.1rem;
+            }
+            
+            /* 전략 박스 */
+            .strategy-box {
+                padding: 0.8rem;
+            }
+            
+            .strategy-box h4 {
+                font-size: 0.9rem;
+            }
+            
+            .strategy-box p {
+                font-size: 0.85rem;
+            }
+            
+            /* 예문 박스 */
+            .example-box {
+                padding: 0.8rem;
+            }
+            
+            .example-text {
+                font-size: 0.85rem;
+                padding: 0.6rem;
+                line-height: 1.5;
+            }
+            
+            /* 선택지 스타일 */
+            .options {
+                font-size: 0.85rem;
+                padding-left: 0.8rem;
+            }
+            
+            /* 분석 섹션 */
+            .analysis {
+                padding: 0.7rem;
+                font-size: 0.85rem;
+            }
+            
+            /* 리스트 스타일 */
+            ul li {
+                font-size: 0.85rem;
+                padding-left: 1.2rem;
+            }
+            
+            /* Part 7 특별 스타일 */
+            .document-type-section {
+                padding: 1rem;
+            }
+            
+            .document-type-section h3 {
+                font-size: 1rem;
+            }
+            
+            .document-type {
+                padding: 0.7rem;
+            }
+            
+            .document-type h4 {
+                font-size: 0.9rem;
+            }
+            
+            /* 어휘 섹션 스타일 */
+            .vocab-category {
+                padding: 1.2rem;
+            }
+            
+            .vocab-category h3 {
+                font-size: 1.1rem;
+            }
+            
+            .vocab-item {
+                padding: 0.8rem;
+            }
+            
+            .vocab-word {
+                font-size: 1rem;
+            }
+            
+            .vocab-meaning {
+                font-size: 0.85rem;
+            }
+            
+            .vocab-example {
+                font-size: 0.8rem;
+                padding: 0.4rem;
+            }
+            
+            /* 패러프레이징 아이템 */
+            .paraphrase-item {
+                font-size: 0.85rem;
+                gap: 0.5rem;
+            }
+            
+            .paraphrase-arrow {
+                font-size: 1rem;
+            }
+            
+            /* LC Part 1 스타일 */
+            .lc-tip-box {
+                padding: 0.8rem;
+            }
+            
+            .lc-tip-box h4 {
+                font-size: 0.9rem;
+            }
+            
+            /* 포토 타입 카드 */
+            .photo-types {
+                gap: 0.8rem;
+            }
+            
+            .photo-type-card {
+                padding: 0.8rem;
+            }
+            
+            .photo-type-card h4 {
+                font-size: 0.95rem;
+            }
+            
+            .photo-type-card p {
+                font-size: 0.85rem;
+            }
+            
+            /* 코드 스타일 */
+            code {
+                font-size: 0.8rem;
+                word-break: break-word;
+            }
+            
+            /* 하이라이트 */
+            .highlight {
+                padding: 0.05rem 0.2rem;
+            }
+        }
+        
+        /* 초소형 모바일 (iPhone SE 등) */
+        @media (max-width: 375px) {
+            /* 탭 더 작게 */
+            .tab-link {
+                padding: 0.7rem 0.6rem;
+                font-size: 0.8rem;
+            }
+            
+            /* 메인 컨텐츠 여백 더 줄이기 */
+            main {
+                padding: 0.8rem 0.5rem;
+            }
+            
+            /* 인트로 메시지 더 작게 */
+            .intro-message {
+                font-size: 0.9rem;
+                padding: 0.7rem 0.8rem;
+            }
+            
+            /* 문법 포인트 카드 여백 줄이기 */
+            .grammar-point {
+                padding: 1rem;
+            }
+            
+            /* 예문 텍스트 크기 조정 */
+            .example-text {
+                font-size: 0.8rem;
+                padding: 0.5rem;
+            }
+            
+            /* 포토 타입 카드 1열로 변경 */
+            .photo-types {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* 가로 모드 대응 */
+        @media (max-height: 500px) and (orientation: landscape) {
+            /* 헤더 높이 줄이기 */
+            header {
+                padding: 0.3rem;
+            }
+            
+            h1 {
+                font-size: 1rem;
+            }
+            
+            /* 탭 높이 줄이기 */
+            .tab-link {
+                padding: 0.6rem 1rem;
+            }
+            
+            /* 메인 컨텐츠 여백 조정 */
+            main {
+                margin-top: 75px;
+            }
+        }
+        
+        /* 스무스 스크롤 */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>📚 [제제편입] 토익 850+ 프로젝트</h1>
+        </div>
+    </header>
+    
+    <nav class="tab-navigation">
+        <ul class="tab-list">
+            <li class="tab-item"><span class="tab-link active" data-section="main-home">홈</span></li>
+            <li class="tab-item"><span class="tab-link lc-tab" data-section="lc-part1">LC Part 1</span></li>
+            <li class="tab-item"><span class="tab-link lc-tab" data-section="lc-part2">LC Part 2</span></li>
+            <li class="tab-item"><span class="tab-link lc-tab" data-section="lc-part34">LC Part 3&4</span></li>
+            <li class="tab-item"><span class="tab-link" data-section="rc-part56">RC Part 5&6</span></li>
+            <li class="tab-item"><span class="tab-link" data-section="rc-part7">RC Part 7</span></li>
+            <li class="tab-item"><span class="tab-link" data-section="rc-vocab">RC 어휘</span></li>
+        </ul>
+    </nav>
+    
+    <div class="progress-indicator">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    
+    <main>
+        <!-- 메인 홈 섹션 -->
+        <section id="main-home" class="content-section active">
+            <div class="intro-message">
+                🎯 TOEIC 850+ 완벽 공략을 위한 종합 가이드
+            </div>
+            
+            <section class="intro">
+                <h2>🌟 제제편입과 함께하는 토익 고득점 프로젝트</h2>
+                <p>안녕하세요! 토익 850점 이상을 목표로 하는 여러분을 위한 완벽한 학습 가이드입니다.</p>
+                <p>이 가이드는 최신 기출 문제 분석을 바탕으로 각 파트별 핵심 전략과 빈출 포인트를 정리했습니다.</p>
+            </section>
+            
+            <div class="part-section">📚 토익 시험 구성</div>
+            
+            <section class="grammar-point">
+                <div class="rank">🎧 Listening Comprehension (LC) - 100문제, 45분</div>
+                <div class="photo-types">
+                    <div class="photo-type-card">
+                        <h4>Part 1: 사진 묘사 (6문제)</h4>
+                        <p>• 사진을 보고 가장 적절한 설명 선택<br>
+                        • 세부사항과 행동에 집중<br>
+                        • 추측 표현 주의</p>
+                    </div>
+                    
+                    <div class="photo-type-card">
+                        <h4>Part 2: 의문문 응답 (25문제)</h4>
+                        <p>• 질문에 가장 적절한 응답 선택<br>
+                        • 의문사 정확히 듣기<br>
+                        • 간접적인 대답도 가능</p>
+                    </div>
+                    
+                    <div class="photo-type-card">
+                        <h4>Part 3: 대화 (39문제)</h4>
+                        <p>• 두 사람의 대화 듣고 문제 해결<br>
+                        • 사전에 문제 읽기 필수<br>
+                        • 화자의 의도 파악 중요</p>
+                    </div>
+                    
+                    <div class="photo-type-card">
+                        <h4>Part 4: 담화 (30문제)</h4>
+                        <p>• 한 사람의 말 듣고 문제 해결<br>
+                        • 다양한 상황별 담화 유형<br>
+                        • 그래픽 문제 증가 추세</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="grammar-point">
+                <div class="rank">📖 Reading Comprehension (RC) - 100문제, 75분</div>
+                <div class="photo-types">
+                    <div class="photo-type-card">
+                        <h4>Part 5: 단문 빈칸 (30문제)</h4>
+                        <p>• 문법과 어휘 능력 평가<br>
+                        • 품사 문제가 50% 이상<br>
+                        • 문장 구조 파악이 핵심</p>
+                    </div>
+                    
+                    <div class="photo-type-card">
+                        <h4>Part 6: 장문 빈칸 (16문제)</h4>
+                        <p>• 4개 지문, 각 4문제<br>
+                        • 문맥 파악 능력 중요<br>
+                        • 문장 삽입 문제 필출</p>
+                    </div>
+                    
+                    <div class="photo-type-card">
+                        <h4>Part 7: 독해 (54문제)</h4>
+                        <p>• 단일/이중/삼중 지문<br>
+                        • 정보 검색 능력이 관건<br>
+                        • 추론 문제 난이도 상승</p>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="part-section">🎯 850+ 달성 전략</div>
+            
+            <section class="grammar-point">
+                <div class="strategy-box">
+                    <h4>✨ LC 전략 (목표: 90/100 이상)</h4>
+                    <ul>
+                        <li><strong>Part 1-2:</strong> 35/31 이상 - 기본점수 확보 구간</li>
+                        <li><strong>Part 3-4:</strong> 정확한 사전 읽기로 시간 확보</li>
+                        <li><strong>핵심:</strong> 첫 문장 집중 청취 + 키워드 캐치</li>
+                    </ul>
+                </div>
+                
+                <div class="strategy-box">
+                    <h4>✨ RC 전략 (목표: 85/100 이상)</h4>
+                    <ul>
+                        <li><strong>Part 5-6:</strong> 20분 내 완료 (1문제당 30초)</li>
+                        <li><strong>Part 7:</strong> 55분 확보, 정보 위치 빠르게 파악</li>
+                        <li><strong>핵심:</strong> 문법 기본기 + 패러프레이징 능력</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="grammar-point">
+                <div class="lc-tip-box">
+                    <h4>📈 최근 출제 경향</h4>
+                    <p>1. <strong>실용성 강화:</strong> 실제 비즈니스 상황과 더욱 유사한 문제 출제</p>
+                    <p>2. <strong>그래픽 문제 증가:</strong> LC Part 3-4, RC Part 7에서 표와 그래프 활용</p>
+                    <p>3. <strong>추론 능력 평가:</strong> 직접적 정보보다 맥락 파악 중요성 증가</p>
+                    <p>4. <strong>패러프레이징:</strong> 지문과 다른 표현으로 답을 제시하는 경우 증가</p>
+                </div>
+            </section>
+            
+            <div class="part-section vocab-section">💡 학습 가이드 활용법</div>
+            
+            <section class="vocab-category">
+                <h3>이 가이드를 200% 활용하는 방법</h3>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">1. 파트별 집중 학습</div>
+                    <div class="vocab-meaning">자신의 약점 파트부터 시작하세요</div>
+                    <div class="vocab-example">
+                        상단 탭을 클릭하여 각 파트별 상세 전략과 예제를 확인할 수 있습니다. 모의고사 후 틀린 문제 유형을 중심으로 학습하세요.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">2. 예문과 함께 암기</div>
+                    <div class="vocab-meaning">문맥 속에서 문법과 어휘를 익히세요</div>
+                    <div class="vocab-example">
+                        각 문법 포인트와 어휘는 실제 기출 예문과 함께 제공됩니다. 단순 암기보다 문장 속에서의 쓰임을 이해하는 것이 중요합니다.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">3. 전략 체화하기</div>
+                    <div class="vocab-meaning">읽기만 하지 말고 실전에 적용하세요</div>
+                    <div class="vocab-example">
+                        각 파트의 전략 박스를 숙지하고, 실제 문제를 풀 때 의식적으로 적용해보세요. 반복 연습을 통해 자연스럽게 체화됩니다.
+                    </div>
+                </div>
+            </section>
+            
+            <div class="intro-message lc-intro-message" style="margin-top: 2rem;">
+                🎯 목표 달성까지 한 걸음! 800점을 넘어 자유로운 영어 실력으로!
+            </div>
+        </section>
+        
+        <!-- LC Part 1 섹션 -->
+        <section id="lc-part1" class="content-section">
+            <div class="intro-message lc-intro-message">
+                📷 LC Part 1. 사진 묘사: 함정을 피하는 기술
+            </div>
+            
+            <section class="intro lc-intro">
+                <h2>🎯 10문제 중 최소 9개 이상 맞추는 전략</h2>
+                <p>Part 1은 토익 LC의 시작이자 가장 점수를 확보하기 쉬운 파트입니다.</p>
+                <p>하지만 최근에는 교묘한 함정이 많아졌습니다. 정확한 전략으로 접근해야 합니다!</p>
+            </section>
+            
+            <div class="part-section lc-section">LC Part 1 핵심 전략</div>
+            
+            <section class="grammar-point">
+                <div class="rank rank-1">🥇 핵심 전략 1: 사진 유형별 공략법</div>
+                
+                <div class="photo-types">
+                    <div class="photo-type-card">
+                        <h4>1인 사진</h4>
+                        <p>• 행동(동작)에 집중<br>
+                        • 현재진행형 주의<br>
+                        • 추측성 표현 경계</p>
+                    </div>
+                    
+                    <div class="photo-type-card">
+                        <h4>2인 이상 사진</h4>
+                        <p>• 공통 행동 vs 개별 행동<br>
+                        • Some/All 구분<br>
+                        • 위치 관계 파악</p>
+                    </div>
+                    
+                    <div class="photo-type-card">
+                        <h4>사물/풍경 사진</h4>
+                        <p>• 수동태 표현 주의<br>
+                        • There is/are 구문<br>
+                        • 위치 전치사 정확히</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="grammar-point">
+                <div class="rank rank-2">🥈 핵심 전략 2: 빈출 함정 패턴</div>
+                
+                <div class="lc-tip-box">
+                    <h4>⚠️ 주의해야 할 함정들</h4>
+                    <ul>
+                        <li><strong>유사 발음 함정:</strong> walking/working, copying/coffee 등</li>
+                        <li><strong>시제 함정:</strong> is being + p.p (진행 중) vs has been + p.p (완료)</li>
+                        <li><strong>추측 표현:</strong> seem to, appear to, probably, maybe는 대부분 오답</li>
+                        <li><strong>극단적 표현:</strong> all, every, no one 등은 신중히 판단</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <div class="lc-strategy-box">
+                <h4>💡 실전 팁</h4>
+                <p>1. Directions 시간에 사진 미리 스캔하기</p>
+                <p>2. 첫 단어부터 집중해서 듣기 (주어 놓치면 답 선택 불가)</p>
+                <p>3. 확실한 오답부터 소거하기</p>
+                <p>4. 2개가 헷갈리면 더 구체적이고 명확한 것 선택</p>
+            </div>
+        </section>
+        
+        <!-- LC Part 2 섹션 -->
+        <section id="lc-part2" class="content-section">
+            <div class="intro-message lc-intro-message">
+                ❓ LC Part 2. 의문문에 답하기: 자연스러운 대화의 흐름
+            </div>
+            
+            <section class="intro lc-intro">
+                <h2>🎯 25문제의 승부처</h2>
+                <p>Part 2는 짧지만 집중력이 필요한 파트입니다.</p>
+                <p>의문사를 정확히 듣고, 자연스러운 대답을 찾는 것이 핵심입니다.</p>
+            </section>
+            
+            <div class="part-section lc-section">LC Part 2 문제 유형</div>
+            
+            <section class="grammar-point">
+                <div class="rank rank-1">🥇 유형 1: WH 의문문</div>
+                
+                <div class="lc-strategy-box">
+                    <h4>✒️ 전략</h4>
+                    <ul>
+                        <li><strong>Who:</strong> 사람 이름, 직책, 부서</li>
+                        <li><strong>When:</strong> 시간, 날짜, 기간</li>
+                        <li><strong>Where:</strong> 장소, 위치</li>
+                        <li><strong>What:</strong> 가장 다양한 답변 가능</li>
+                        <li><strong>Why:</strong> Because, To 부정사, 이유 설명</li>
+                        <li><strong>How:</strong> 방법, 정도, 상태</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="grammar-point">
+                <div class="rank rank-2">🥈 유형 2: Yes/No 의문문</div>
+                
+                <div class="lc-tip-box">
+                    <h4>💡 주의사항</h4>
+                    <p>• 항상 Yes/No로 시작하는 것은 아님</p>
+                    <p>• "I'm not sure", "Let me check" 등도 정답 가능</p>
+                    <p>• 부가의문문은 앞 문장의 반대로 대답</p>
+                </div>
+            </section>
+            
+            <section class="grammar-point">
+                <div class="rank rank-3">🥉 유형 3: 선택 의문문 & 간접 의문문</div>
+                
+                <div class="lc-strategy-box">
+                    <h4>✒️ 공략법</h4>
+                    <p><strong>선택 의문문 (A or B):</strong> 둘 중 하나 선택 또는 "Both/Neither" 가능</p>
+                    <p><strong>간접 의문문:</strong> 평서문처럼 들리지만 대답 필요</p>
+                </div>
+            </section>
+        </section>
+        
+        <!-- LC Part 3&4 섹션 -->
+        <section id="lc-part34" class="content-section">
+            <div class="intro-message lc-intro-message">
+                🎧 LC Part 3&4. 대화와 담화: 흐름을 읽는 기술
+            </div>
+            
+            <section class="intro lc-intro">
+                <h2>🎯 긴 지문의 정보를 효율적으로 처리하기</h2>
+                <p>Part 3(대화)와 Part 4(담화)는 LC의 가장 큰 비중을 차지합니다.</p>
+                <p>문제 먼저 읽기와 키워드 캐치가 고득점의 열쇠입니다.</p>
+            </section>
+            
+            <div class="part-section lc-section">LC Part 3 (대화) 전략</div>
+            
+            <section class="grammar-point">
+                <div class="rank rank-1">🥇 대화 유형별 접근법</div>
+                
+                <div class="photo-types">
+                    <div class="photo-type-card">
+                        <h4>🏢 비즈니스 대화</h4>
+                        <p>• 회의 일정 조정<br>
+                        • 프로젝트 진행 상황<br>
+                        • 문제 해결 요청</p>
+                    </div>
+                    
+                    <div class="photo-type-card">
+                        <h4>🛍️ 서비스 대화</h4>
+                        <p>• 예약/주문<br>
+                        • 불만/환불<br>
+                        • 정보 문의</p>
+                    </div>
+                    
+                    <div class="photo-type-card">
+                        <h4>📞 전화 대화</h4>
+                        <p>• 메시지 전달<br>
+                        • 약속 확인/변경<br>
+                        • 긴급 상황 대처</p>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="part-section lc-section">LC Part 4 (담화) 전략</div>
+            
+            <section class="grammar-point">
+                <div class="rank rank-1">🥇 담화 유형별 핵심 포인트</div>
+                
+                <div class="lc-strategy-box">
+                    <h4>📢 주요 담화 유형</h4>
+                    <ul>
+                        <li><strong>공지/안내:</strong> 변경사항, 새로운 정책, 주의사항</li>
+                        <li><strong>광고:</strong> 제품 특징, 할인 정보, 연락처</li>
+                        <li><strong>뉴스/보도:</strong> 사건 개요, 영향, 향후 계획</li>
+                        <li><strong>회의/프레젠테이션:</strong> 주제, 발표자, 다음 단계</li>
+                        <li><strong>관광 안내:</strong> 장소 설명, 주의사항, 일정</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <div class="lc-tip-box">
+                <h4>🎯 Part 3&4 공통 전략</h4>
+                <p>1. <strong>사전 읽기:</strong> Direction 시간 + 각 문제 사이 8초 활용</p>
+                <p>2. <strong>첫 문장 집중:</strong> 상황과 화자 관계 파악</p>
+                <p>3. <strong>그래픽 문제:</strong> 표나 그림이 있으면 미리 확인</p>
+                <p>4. <strong>의도 파악 문제:</strong> 직접적 표현보다 맥락 이해 중요</p>
+            </div>
+        </section>
+        
+        <!-- RC Part 5&6 섹션 -->
+        <section id="rc-part56" class="content-section">
+            <div class="intro-message">
+                🎯 반복적으로 출제되는 출제 포인트, 이번에도 확인합시다!
+            </div>
+            
+            <section class="intro">
+                <h2>📊 금주 모의토익(Test 6) RC Part 5&6 분석!</h2>
+                <p><strong>Part 5&6의 핵심은 문법의 기본기와 문맥 파악입니다.</strong></p>
+                <p>동사의 기본기, 수식어(형용사/부사), 그리고 다양한 준동사의 쓰임이 핵심 포인트였습니다!</p>
+            </section>
+            
+            <div class="part-section">RC Part 5. 문법/어휘</div>
+            
+            <section class="grammar-point">
+                <div class="rank rank-1">🥇 1위: 동사의 기본! '수일치'와 '태'</div>
+                
+                <div class="strategy-box">
+                    <h4>✒️ 전략</h4>
+                    <p>모든 동사 문제의 시작입니다. 문장의 진짜 주어를 정확히 찾고, 동사와의 수(단수/복수)와 태(능동/수동) 관계를 파악하는 것이 관건입니다.</p>
+                    <ul>
+                        <li><strong>수일치:</strong> 주어가 단수면 단수 동사(has, is, -s), 복수면 복수 동사(have, are, 동사원형)</li>
+                        <li><strong>태(능동/수동):</strong> 빈칸 뒤에 목적어(명사)가 있으면 능동태, by 또는 아무것도 없으면 수동태(be p.p.)</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <h5>기출 예문 (106번)</h5>
+                    <div class="example-text">
+                        The search committee ------- three candidates for the chief executive position.
+                    </div>
+                    <div class="analysis">
+                        <strong>분석:</strong> 주어는 <code>The search committee</code>(단수)이고, 뒤에 목적어 <code>three candidates</code>가 있으므로 <span class="highlight">능동태</span>가 와야 합니다. 따라서 단수 동사이면서 능동태인 <strong>(C) has nominated</strong>가 정답입니다.
+                    </div>
+                </div>
+            </section>
+            
+            <section class="grammar-point">
+                <div class="rank rank-2">🥈 2위: 수식어의 모든 것! '형용사' vs '부사'</div>
+                
+                <div class="strategy-box">
+                    <h4>✒️ 전략</h4>
+                    <p>명사를 꾸미면 형용사, 동사/형용사/부사/문장 전체를 꾸미면 부사! 수식받는 대상이 무엇인지를 찾는 것이 핵심입니다.</p>
+                    <ul>
+                        <li>관사/소유격 + (부사) + <span class="highlight">형용사</span> + 명사</li>
+                        <li>동사 + <span class="highlight">부사</span> 또는 <span class="highlight">부사</span> + 동사</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <h5>기출 예문 (125번)</h5>
+                    <div class="example-text">
+                        Likoni Hospitality Group, one of Mombasa's largest employers, has a ------- impact on the local economy.
+                    </div>
+                    <div class="analysis">
+                        <strong>분석:</strong> 빈칸은 관사(a)와 명사(impact) 사이에 위치하여 명사를 수식하는 <span class="highlight">형용사</span> 자리입니다. 따라서 <strong>(B) considerable</strong>(상당한)이 정답입니다.
+                    </div>
+                </div>
+            </section>
+            
+            <section class="grammar-point">
+                <div class="rank rank-3">🥉 3위: 준동사의 활용! (to부정사, 동명사, 분사)</div>
+                
+                <div class="strategy-box">
+                    <h4>✒️ 전략</h4>
+                    <p>동사를 다른 품사(명사, 형용사)처럼 활용하는 준동사는 토익의 단골 출제 유형입니다. 동사 뒤에 오는 형태를 암기하고, 명사를 앞/뒤에서 수식하는 분사의 쓰임을 꼭 알아두세요.</p>
+                    <ul>
+                        <li><code>plan to do</code>, <code>risk doing</code>처럼 동사별 짝꿍 암기</li>
+                        <li>수식하는 명사가 행위의 주체면 현재분사(-ing), 대상이면 과거분사(-ed)</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <h5>기출 예문 1 (127번)</h5>
+                    <div class="example-text">
+                        New food regulations require all Dean's Burgers packaging to contain the notice that ------- undercooked meat can be harmful.
+                    </div>
+                    <div class="analysis">
+                        <strong>분석:</strong> that 절 안에서 주어 역할을 해야 하므로 '섭취하는 것'이라는 의미의 <span class="highlight">동명사</span> <strong>(D) consuming</strong>이 정답입니다.
+                    </div>
+                </div>
+                
+                <div class="example-box">
+                    <h5>기출 예문 2 (130번)</h5>
+                    <div class="example-text">
+                        The CEO wants a greater portion of next year's budget ------- to research and development.
+                    </div>
+                    <div class="analysis">
+                        <strong>분석:</strong> 명사 <code>budget</code>을 뒤에서 수식하는 자리입니다. 예산은 '할당되는' 것이므로 수동의 의미를 가진 <span class="highlight">과거분사</span> <strong>(A) allocated</strong>가 정답입니다. (<code>budget (which is) allocated to...</code>)
+                    </div>
+                </div>
+            </section>
+            
+            <section class="grammar-point">
+                <div class="rank rank-4">🏅 4위: 문장의 뼈대! '명사'와 '대명사'</div>
+                
+                <div class="strategy-box">
+                    <h4>✒️ 전략</h4>
+                    <p>주어, 목적어, 보어 등 문장의 핵심 성분 역할을 하는 명사/대명사를 찾는 문제입니다. 문맥에 맞는 어휘를 고르거나, 수량 표현에 맞는 명사의 형태를 찾는 유형이 자주 나옵니다.</p>
+                    <ul>
+                        <li><code>Each</code>, <code>Every</code>, <code>Another</code> + 단수 명사</li>
+                        <li><code>All</code>, <code>Some</code>, <code>Most</code> + 복수 명사 / 불가산 명사</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <h5>기출 예문 (121번)</h5>
+                    <div class="example-text">
+                        ------- client is assigned to a personal financial adviser...
+                    </div>
+                    <div class="analysis">
+                        <strong>분석:</strong> 빈칸 뒤에 단수 명사인 <code>client</code>가 있으므로, 단수 명사와 함께 쓰이는 수량 형용사 <strong>(A) Each</strong>가 정답입니다.
+                    </div>
+                </div>
+            </section>
+            
+            <section class="grammar-point">
+                <div class="rank rank-5">🏅 5위: 문맥의 연결고리! '전치사'와 '접속사'</div>
+                
+                <div class="strategy-box">
+                    <h4>✒️ 전략</h4>
+                    <p>단어와 구를 연결하는 '전치사', 문장과 문장을 논리적으로 연결하는 '접속사'를 구분해야 합니다. 빈칸 뒤의 구조와 앞뒤 문장의 의미 관계를 파악하세요.</p>
+                    <ul>
+                        <li><span class="highlight">전치사</span> + 명사구</li>
+                        <li><span class="highlight">접속사</span> + 주어 + 동사 ...</li>
+                    </ul>
+                </div>
+                
+                <div class="example-box">
+                    <h5>기출 예문 (123번)</h5>
+                    <div class="example-text">
+                        Please provide your phone number ------- the delivery driver needs to contact you.
+                    </div>
+                    <div class="analysis">
+                        <strong>분석:</strong> 빈칸 뒤에 <code>주어(the delivery driver) + 동사(needs)</code>를 갖춘 완전한 절이 이어지므로 접속사가 와야 합니다. '~할 경우에 대비하여'라는 의미로 문맥을 자연스럽게 연결하는 <strong>(D) in case</strong>가 정답입니다.
+                    </div>
+                </div>
+            </section>
+            
+            <div class="part-section">RC Part 6. 문맥 파악</div>
+            
+            <section class="intro">
+                <p>Part 5가 나무를 보는 문제라면, Part 6는 숲의 흐름을 읽는 문제입니다. 문맥 파악이 점수를 좌우합니다!</p>
+                <p><strong>금주의 Part 6 공략 포인트 TOP 2</strong></p>
+            </section>
+            
+            <section class="grammar-point">
+                <div class="rank rank-1">🥇 1위: 전체 흐름을 파악하라! '문장 삽입' 문제</div>
+                
+                <div class="strategy-box">
+                    <h4>✒️ 전략</h4>
+                    <p>Part 6의 핵심 유형입니다. 빈칸 앞뒤 문장과의 논리적 연결고리가 가장 중요합니다. 대명사(it, this, they), 연결어(also, however), 내용의 순서(원인-결과, 시간 순서)를 강력한 힌트로 활용하세요.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h5>기출 예문 (138번) <em>(배송 정책에 관한 글)</em></h5>
+                    <div class="example-text">
+                        Upon arrival at your home, the item will be placed in the location you desire. <strong>-------.</strong> Assembly is included as well.
+                    </div>
+                    <div class="options">
+                        (A) When buying a home, location is extremely important.<br>
+                        (B) Refinishing furniture is a form of art.<br>
+                        (C) Furnished apartments can be found online.<br>
+                        (D) All packing materials will be removed.
+                    </div>
+                    <div class="analysis">
+                        <strong>분석:</strong> 빈칸 앞 문장은 '물건을 원하는 위치에 놓아준다'는 내용이고, 뒷 문장은 '조립도 포함된다'는 내용입니다. 가구 배송 및 설치 과정에서 '물건 배치'와 '조립' 사이에 가장 자연스럽게 들어갈 내용은 '포장재 제거'입니다. 따라서 <strong>(D) 모든 포장재는 제거될 것입니다.</strong>가 정답입니다.
+                    </div>
+                </div>
+            </section>
+            
+            <section class="grammar-point">
+                <div class="rank rank-2">🥈 2위: 문맥이 왕이다! '연결어'와 '시제' 문제</div>
+                
+                <div class="strategy-box">
+                    <h4>✒️ 전략</h4>
+                    <p>빈칸이 포함된 한 문장만 보고 풀면 함정에 빠지기 쉽습니다. 글 전체의 목적(광고, 공지, 이메일 등)과 상황을 이해해야 올바른 연결어나 시제를 고를 수 있습니다.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h5>기출 예문 (140번) <em>(구독 취소 확인 이메일)</em></h5>
+                    <div class="example-text">
+                        Your subscription to Medical Innovations Quarterly has been canceled. <strong>-------</strong> May 1, you will no longer receive the print edition.
+                    </div>
+                    <div class="options">
+                        (A) Starts<br>
+                        (B) Started<br>
+                        (C) Starter<br>
+                        (D) Starting
+                    </div>
+                    <div class="analysis">
+                        <strong>분석:</strong> 앞 문장에서 '구독이 취소되었다'고 알린 후, 빈칸 뒤에서 '5월 1일부터 인쇄판을 받지 못할 것'이라고 말하고 있습니다. 특정 시점을 기준으로 어떤 일이 시작됨을 나타낼 때, 문두에서 분사구문으로 <strong>(D) Starting</strong>을 사용하는 것이 가장 자연스럽습니다.
+                    </div>
+                </div>
+            </section>
+        </section>
+        
+        <!-- RC Part 7 섹션 -->
+        <section id="rc-part7" class="content-section">
+            <div class="intro-message">
+                🎯 정보 검색의 달인이 되어 Part 7을 정복하세요!
+            </div>
+            
+            <section class="intro">
+                <h2>📖 Part 7 완전 정복</h2>
+                <p>Part 7은 단순히 해석 능력을 넘어, 필요한 정보를 빠르고 정확하게 찾아내는 '정보 검색 능력'을 테스트하는 파트입니다.</p>
+            </section>
+            
+            <section class="document-type-section">
+                <h3>📖 지문 유형별 공략 전략</h3>
+                
+                <div class="document-type">
+                    <h4>1. 이메일 (E-mail)</h4>
+                    <p><strong>전략:</strong> <code>누가(From) 누구에게(To) 썼는지</code>, <code>무엇에 대해(Subject)</code> 썼는지 먼저 파악하세요. 글의 목적은 보통 첫 문단에 나옵니다. 날짜와 마감일을 주의 깊게 보세요.</p>
+                </div>
+                
+                <div class="document-type">
+                    <h4>2. 메시지 / 온라인 채팅 (Message / Chat)</h4>
+                    <p><strong>전략:</strong> <code>시간</code>과 <code>말하는 사람</code>을 계속 확인하며 대화의 흐름을 따라가야 합니다. 화제가 빠르게 바뀔 수 있고, 구어체 표현이나 생략이 많으니 문맥으로 의미를 파악하는 것이 중요합니다.</p>
+                </div>
+                
+                <div class="document-type">
+                    <h4>3. 웹페이지 / 광고 (Web page / Ad)</h4>
+                    <p><strong>전략:</strong> 제목, 소제목, 글머리 기호(•), 굵은 글씨 등 시각적인 단서를 적극 활용해 필요한 정보가 어디 있는지 빠르게 스캔하세요. 글 전체를 다 읽기보다 질문이 요구하는 정보를 찾아가는 방식이 효율적입니다.</p>
+                </div>
+            </section>
+            
+            <section class="intro">
+                <h2>🔥 Part 7 핵심 출제 포인트 TOP 4 (Test 6 기준)</h2>
+            </section>
+            
+            <section class="grammar-point">
+                <div class="rank rank-1">🥇 1위: 글의 주제·목적 파악하기</div>
+                
+                <div class="strategy-box">
+                    <h4>✒️ 전략</h4>
+                    <p><code>purpose</code>, <code>main idea</code>, <code>about</code> 등의 단어가 포함된 문제 유형입니다. 글의 종류(광고, 공지, 감사 등)를 파악하고, 제목과 첫 문단에 집중하면 대부분의 단서를 찾을 수 있습니다. "이 글을 왜 썼을까?"를 항상 생각하세요.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h5>기출 예문 (Q. 164)</h5>
+                    <div class="example-text">
+                        <strong>What is the purpose of the e-mail?</strong><br>
+                        (A) To welcome a new customer<br>
+                        (B) To report an account error<br>
+                        (C) To confirm approval of a loan<br>
+                        (D) To promote a new service
+                    </div>
+                    <div class="analysis">
+                        <strong>분석:</strong> 이메일 첫 문장에 <code>You are now able to enroll in Front Street Bank's new Voice Identification System (VIS)</code> (이제 저희 은행의 새로운 음성 인식 시스템(VIS)에 등록하실 수 있습니다)라고 명시되어 있습니다. 새로운 서비스를 소개하고 이용을 권유하는 것이므로, 글의 목적은 <strong>(D) 새로운 서비스를 홍보하기 위해서</strong> 입니다.
+                    </div>
+                </div>
+            </section>
+            
+            <section class="grammar-point">
+                <div class="rank rank-2">🥈 2위: 의도 파악 및 추론하기 (Imply / Infer)</div>
+                
+                <div class="strategy-box">
+                    <h4>✒️ 전략</h4>
+                    <p><code>imply</code>, <code>suggest</code>, <code>most likely</code> 등이 포함된 고난도 유형입니다. 지문에 직접적으로 언급되지 않은 내용을 단서들을 조합해 논리적으로 유추해야 합니다. 특정 어구나 문장의 의미를 물을 때는 반드시 앞뒤 문맥과 전체 상황 속에서 파악해야 합니다.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h5>기출 예문 (Q. 173)</h5>
+                    <div class="example-text">
+                        <strong>At 9:41 A.M., what does Ms. Kapoor most likely mean when she writes, "Where do we stand?"</strong><br>
+                        (A) She is requesting an update on preparations for a trip.<br>
+                        (B) She wants to assess her colleagues' interest in attending an event.
+                    </div>
+                    <div class="analysis">
+                        <strong>분석:</strong> 9시 41분, Priyanka Kapoor의 첫 메시지는 <code>We need to talk about the upcoming... conference in London.</code> (런던에서 있을 컨퍼런스에 대해 이야기해야 해요.)였습니다. 바로 다음에 이어진 <code>Where do we stand?</code>는 "상황이 어떻게 되어가고 있나요?", "진행 상황이 어떤가요?"를 묻는 관용 표현입니다. 따라서 컨퍼런스 준비에 대한 <strong>(A) 진행 상황 업데이트를 요청하고 있다</strong>는 것이 가장 적절한 의도입니다.
+                    </div>
+                </div>
+            </section>
+            
+            <section class="grammar-point">
+                <div class="rank rank-3">🥉 3위: 언급되지 않은 것 찾기 (NOT 문제)</div>
+                
+                <div class="strategy-box">
+                    <h4>✒️ 전략</h4>
+                    <p>시간을 많이 뺏는 함정 문제입니다. 정답을 찾으려 하지 말고, <strong>지문에 언급된 3개의 오답을 하나씩 지워나가는 '소거법'</strong>으로 푸는 것이 훨씬 빠르고 정확합니다.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h5>기출 예문 (Q. 176)</h5>
+                    <div class="example-text">
+                        <strong>What is NOT indicated about Blissful Horse Stables?</strong><br>
+                        (A) It provides grooming services.<br>
+                        (B) It requires a minimum stay of three days.<br>
+                        (C) It has a large, grassy field for grazing.<br>
+                        (D) It is a family-run business.
+                    </div>
+                    <div class="analysis">
+                        <strong>분석:</strong> 구인 광고 지문을 스캔합니다. (A) <code>groom horses</code>(말을 손질) → 언급됨. (C) <code>five-acre grazing pasture</code>(풀을 뜯는 목초지) → 언급됨. (D) <code>owned and operated by one family</code>(한 가족이 소유 및 운영) → 언급됨. 지문에 언급되지 않은 것은 <strong>(B) 최소 3일 숙박 조건</strong>입니다.
+                    </div>
+                </div>
+            </section>
+            
+            <section class="grammar-point">
+                <div class="rank rank-4">🏅 4위: 연계 정보 찾기 (이중·삼중 지문)</div>
+                
+                <div class="strategy-box">
+                    <h4>✒️ 전략</h4>
+                    <p>두 개 이상의 지문에 흩어져 있는 정보를 연결해야만 풀 수 있는 문제입니다. <strong>사람 이름, 회사명, 날짜, 주문 번호, 송장 번호</strong> 등 공통적으로 등장하는 '연결고리'를 먼저 찾으세요. 그 연결고리를 중심으로 각 지문에서 필요한 정보를 조합해 정답을 도출합니다.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h5>기출 예문 (Q. 194) <em>(광고문, 이메일, 영수증 3개 지문)</em></h5>
+                    <div class="example-text">
+                        <strong>What can be inferred about Ms. Rivera?</strong><br>
+                        (A) She damaged her guitar.<br>
+                        (B) She requested a refund.<br>
+                        (C) She was previously enrolled in an online class.<br>
+                        (D) She purchased the floor model.
+                    </div>
+                    <div class="analysis">
+                        <strong>분석:</strong><br>
+                        1. <strong>연결고리:</strong> <code>Lucia Rivera</code>, <code>Alexis Instruments</code>, 기타 주문<br>
+                        2. <strong>이메일 내용:</strong> 재고가 없어 두 가지 옵션을 제시함. [옵션 1] 전액 환불 또는 [옵션 2] <strong>진열 상품(floor model)을 10% 할인된 가격에 구매</strong>.<br>
+                        3. <strong>영수증 내용:</strong> <code>Lucia Rivera</code> 앞으로 발행되었으며, 450달러짜리 기타에 <strong>45달러(10%)가 할인</strong>된 내역이 찍혀 있음.<br>
+                        4. <strong>결론:</strong> 이메일에서 제안한 '10% 할인'이 영수증에 실제로 적용된 것을 통해, 리베라 씨가 <strong>(D) 진열 상품을 구매했다</strong>는 사실을 추론할 수 있습니다.
+                    </div>
+                </div>
+            </section>
+        </section>
+        
+        <!-- RC 어휘 섹션 -->
+        <section id="rc-vocab" class="content-section">
+            <div class="intro-message">
+                🎯 850점의 벽을 넘으려면, 단어의 '진짜 쓰임'을 알아야 합니다!
+            </div>
+            
+            <section class="intro">
+                <h2>📚 금주 모의토익(Test 6) 핵심 어휘 총정리</h2>
+                <p>토익은 비즈니스 상황에서 실제로 쓰이는 '살아있는 어휘'를 테스트합니다.</p>
+                <p>단순 암기가 아닌, 문맥 속에서의 정확한 쓰임을 익혀야 고득점이 가능합니다!</p>
+            </section>
+            
+            <section class="vocab-category">
+                <h3>1. 행동과 상태를 결정짓는 동사 (Verbs)</h3>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">allocate</div>
+                    <div class="vocab-meaning">할당하다, 배정하다</div>
+                    <div class="vocab-example">
+                        <code>(Q130) budget allocated to research</code> (연구에 할당된 예산)처럼, 예산이나 자원을 특정 목적에 나누어 줄 때 사용되는 필수 동사입니다.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">boost</div>
+                    <div class="vocab-meaning">신장시키다, 증진시키다</div>
+                    <div class="vocab-example">
+                        <code>(Q108) To boost enrollment</code> (등록률을 높이기 위해)처럼, 판매량, 사기, 실적 등을 끌어올린다는 긍정적인 의미로 자주 등장합니다.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">guarantee</div>
+                    <div class="vocab-meaning">보장하다, 보증하다</div>
+                    <div class="vocab-example">
+                        <code>(Q109) guarantees its delivery times</code> (배송 시간을 보장하다)와 같이, 약속이나 품질을 확실히 책임진다는 의미의 비즈니스 단골 어휘입니다.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">incur</div>
+                    <div class="vocab-meaning">(비용·손실을) 발생시키다, 초래하다</div>
+                    <div class="vocab-example">
+                        <code>(Q186-190 지문) repairs incur the $200 fee</code> (수리 시 200달러의 비용이 발생한다)처럼, 원치 않는 비용이나 결과가 생길 때 사용됩니다.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">initiate</div>
+                    <div class="vocab-meaning">시작하다, 개시하다</div>
+                    <div class="vocab-example">
+                        <code>(Q147) If you initiated this update</code> (당신이 이 업데이트를 시작했다면)처럼, 'start'보다 격식 있는 표현으로, 절차나 공식적인 일을 시작할 때 쓰입니다.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">motivate</div>
+                    <div class="vocab-meaning">동기를 부여하다</div>
+                    <div class="vocab-example">
+                        <code>(Q114) motivates them to work</code> (그들이 일하도록 동기를 부여하다)처럼, 목표 달성을 위해 누군가를 격려하고 이끌어 줄 때 사용됩니다.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">overcome</div>
+                    <div class="vocab-meaning">극복하다</div>
+                    <div class="vocab-example">
+                        <code>(Q131-134 지문) overcome the challenges</code> (어려움을 극복하다)처럼, 문제나 장애물을 이겨낼 때 쓰이는 긍정적인 단어입니다.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">prioritize</div>
+                    <div class="vocab-meaning">우선순위를 매기다, 우선적으로 처리하다</div>
+                    <div class="vocab-example">
+                        <code>(Q156-158 지문) planners have obviously prioritized the environment</code> (기획자들이 환경을 우선시했다)처럼, 여러 가지 일 중에서 무엇을 가장 중요하게 여기는지를 나타낼 때 쓰입니다.
+                    </div>
+                </div>
+            </section>
+            
+            <section class="vocab-category">
+                <h3>2. 문장의 핵심! 명사 (Nouns)</h3>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">compliance</div>
+                    <div class="vocab-meaning">(법·규칙의) 준수</div>
+                    <div class="vocab-example">
+                        <code>(Q143-146 지문) in compliance with</code> (~을 준수하여)라는 형태로 자주 쓰이며, 규정이나 정책을 잘 따르는 것을 의미합니다.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">enrollment</div>
+                    <div class="vocab-meaning">등록, 등록자 수</div>
+                    <div class="vocab-example">
+                        <code>(Q108) To boost enrollment</code> (등록률을 높이기 위해)처럼, 강좌, 프로그램, 학교 등의 등록과 관련하여 빈출되는 어휘입니다.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">invoice</div>
+                    <div class="vocab-meaning">송장, 청구서</div>
+                    <div class="vocab-example">
+                        <code>(Q196-200 지문)</code> Part 7 다중 지문에서 영수증(receipt)과 함께 자주 등장하며, 제공된 서비스와 지불할 금액의 내역을 담고 있습니다.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">luthier</div>
+                    <div class="vocab-meaning">현악기 제작가[수리공]</div>
+                    <div class="vocab-example">
+                        <code>(Q191-195 지문)</code> 낯설지만 알아두면 좋은 전문 직업 명사입니다. 토익은 이렇게 가끔씩 생소한 직업 명사를 출제해 변별력을 높입니다.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">projection</div>
+                    <div class="vocab-meaning">예상, 추정치</div>
+                    <div class="vocab-example">
+                        <code>(Q102) sales projections</code> (매출 예상치)처럼, 미래의 수치나 실적을 예측할 때 사용되는 비즈니스 핵심 어휘입니다.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">regulation</div>
+                    <div class="vocab-meaning">규정, 규제</div>
+                    <div class="vocab-example">
+                        <code>(Q127) New food regulations</code> (새로운 식품 규정)처럼, 정부나 기관이 정한 규칙을 의미하며 Part 7 공지문 등에서 자주 보입니다.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">residence</div>
+                    <div class="vocab-meaning">거주지, 주택</div>
+                    <div class="vocab-example">
+                        <code>(Q135) location of your residence</code> (당신의 거주지 위치)와 같이, 'home'이나 'address'의 격식 있는 표현으로 사용됩니다.
+                    </div>
+                </div>
+            </section>
+            
+            <section class="vocab-category">
+                <h3>3. 의미를 풍부하게! 형용사 & 부사 (Adjectives & Adverbs)</h3>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">considerable</div>
+                    <div class="vocab-meaning">상당한, 많은</div>
+                    <div class="vocab-example">
+                        <code>(Q125) a considerable impact on</code> (~에 상당한 영향)처럼, 양이나 정도가 매우 크다는 것을 나타내는 고급 어휘입니다.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">exclusively</div>
+                    <div class="vocab-meaning">독점적으로, 오로지</div>
+                    <div class="vocab-example">
+                        <code>(Q115) works exclusively on</code> (~에 대해서만 독점적으로 일한다)처럼, 'only'의 의미를 강조하며 범위를 한정할 때 쓰입니다.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">inclement</div>
+                    <div class="vocab-meaning">(날씨가) 궂은, 혹독한</div>
+                    <div class="vocab-example">
+                        <code>(Q113) the inclement weather</code> (궂은 날씨)처럼, 야외 행사나 교통편 취소 등의 원인으로 자주 등장하는 날씨 관련 단골 어휘입니다.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">prospective</div>
+                    <div class="vocab-meaning">장래의, 잠재적인</div>
+                    <div class="vocab-example">
+                        <code>(Q157) How can a prospective resident learn...</code> (장래의 입주자가 어떻게 배울 수 있는가?)처럼, 'prospective customer/client/employee' (잠재 고객/직원) 형태로 많이 쓰입니다.
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="vocab-word">routinely</div>
+                    <div class="vocab-meaning">정기적으로, 일상적으로</div>
+                    <div class="vocab-example">
+                        <code>(Q118) need to be cleaned routinely</code> (정기적으로 청소될 필요가 있다)처럼, regularly와 비슷한 의미로, 정해진 절차에 따라 주기적으로 하는 일을 묘사합니다.
+                    </div>
+                </div>
+            </section>
+            
+            <section class="vocab-category">
+                <h3>4. 고득점의 열쇠! 중요 어구 & 재표현 (Phrases & Paraphrasing)</h3>
+                
+                <div class="vocab-item">
+                    <div class="paraphrase-item">
+                        <code>Where do we stand?</code> (상황이 어떤가요?)
+                        <span class="paraphrase-arrow">→</span>
+                        <code>requesting an update</code> (진행 상황 업데이트를 요청하는 것) <strong>(Q173)</strong>
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="paraphrase-item">
+                        <code>newly constructed</code> (새롭게 건설된)
+                        <span class="paraphrase-arrow">→</span>
+                        <code>renovated</code> (개조된, 리모델링된) <strong>(Q192)</strong>
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="paraphrase-item">
+                        <code>a sudden increase in demand</code> (수요의 급격한 증가)
+                        <span class="paraphrase-arrow">→</span>
+                        <code>has experienced a sudden increase in business</code> (사업에 갑작스러운 증가를 경험했다) <strong>(Q186)</strong>
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="paraphrase-item">
+                        <code>take on the project</code> (프로젝트를 맡다)
+                        <span class="paraphrase-arrow">→</span>
+                        <code>first choice to take on the project</code> (프로젝트를 맡을 첫 번째 선택) <strong>(Q159)</strong>
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <div class="paraphrase-item">
+                        <code>neglect to do</code> (~하는 것을 잊다/게을리하다)
+                        <span class="paraphrase-arrow">→</span>
+                        <code>forgot to charge</code> (요금을 청구하는 것을 잊었다) <strong>(Q200)</strong>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+    
+    <script>
+        // 탭 클릭 이벤트 처리
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabLinks = document.querySelectorAll('.tab-link');
+            const contentSections = document.querySelectorAll('.content-section');
+            const progressBar = document.getElementById('progress-bar');
+            
+            // 탭 클릭 이벤트
+            tabLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 모든 탭과 섹션에서 active 클래스 제거
+                    tabLinks.forEach(tab => tab.classList.remove('active'));
+                    contentSections.forEach(section => section.classList.remove('active'));
+                    
+                    // 클릭한 탭에 active 클래스 추가
+                    this.classList.add('active');
+                    
+                    // 해당 섹션 보이기
+                    const sectionId = this.getAttribute('data-section');
+                    const targetSection = document.getElementById(sectionId);
+                    if (targetSection) {
+                        targetSection.classList.add('active');
+                    }
+                    
+                    // 스크롤을 맨 위로
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    // 진행률 초기화
+                    updateProgressBar();
+                });
+            });
+            
+            // 스크롤 시 진행률 업데이트
+            function updateProgressBar() {
+                const activeSection = document.querySelector('.content-section.active');
+                if (!activeSection) return;
+                
+                const windowHeight = window.innerHeight;
+                const documentHeight = activeSection.offsetHeight;
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollPercent = (scrollTop / (documentHeight - windowHeight + 100)) * 100;
+                
+                progressBar.style.width = Math.min(scrollPercent, 100) + '%';
+            }
+            
+            // 스크롤 이벤트 리스너
+            window.addEventListener('scroll', updateProgressBar);
+            window.addEventListener('resize', updateProgressBar);
+            
+            // 초기 진행률 설정
+            updateProgressBar();
+        });
+    </script>
+</body>
+</html>
